@@ -1,108 +1,105 @@
-# Diccionario de Datos: Esquema Pimpoyo
+# Diccionario de datos: Esquema Pimpoyo
 
-Contenido de las tablas del nuevo esquema `pimpoyo`.
+Contenido de las tablas del nuevo esquema "pimpoyo".
 
-## 1. users
+## 1. Tabla de users
 *Identidad del estudiante.*
 
 | Columna | Contenido |
 | :--- | :--- |
-| **id** | Identificador único del usuario. |
-| **nickname** | Nombre de usuario (apodo). |
-| **hashed_password** | Contraseña cifrada. |
-| **avatar_url** | Ruta de la imagen de perfil. |
-| **edad** | Edad del estudiante. |
-| **genero** | Género declarado. |
-| **curso_escolar** | Grado escolar (ej. "3º ESO"). |
-| **xp_actual** | Puntos de experiencia acumulados (Nivel). |
-| **created_at** | Fecha de registro. |
+| **ID** | Identificador único del usuario. |
+| **Nickname** | Nombre de usuario (apodo). |
+| **Hashed_password** | Contraseña cifrada. |
+| **Avatar_url** | Ruta de la imagen de perfil. |
+| **Edad** | Edad del estudiante. |
+| **Género** | Género declarado. |
+| **Curso_escolar** | Grado escolar (ej. "3º ESO"). |
+| **Xp_actual** | Puntos de experiencia acumulados (Nivel) (Los que tienen 0 no han hecho Pimpoyo) |
+| **Created_at** | Fecha de registro. |
 
-## 2. sessions
-*Resultados de una partida.*
+## 2. Sessions
+*Resultados de la sesión con Pimpoyo.*
 
 | Columna | Contenido |
 | :--- | :--- |
-| **id** | Identificador de la sesión. |
-| **user_id** | Referencia al usuario que jugó. |
-| **interacciones_totales** | Cantidad total de noticias analizadas. |
-| **aciertos_totales** | Número de identificaciones correctas. |
-| **precision_global** | Porcentaje de acierto (0-100%). |
-| **tasa_falsos_positivos**| % de veces que marcó una noticia Verdadera como Falsa. |
-| **tasa_falsos_negativos**| % de veces que marcó una noticia Falsa como Verdadera. |
-| **duracion_seg** | Tiempo total de uso en segundos. |
+| **ID** | Identificador de la sesión. |
+| **User_ID** | Referencia del usuario que jugó. |
+| **Interacciones_totales** | Cantidad total de noticias analizadas.(Los que tienen 0 no han hecho Pimpoyo) |
+| **Aciertos_totales** | Número de noticias correctas. |
+| **Fallos_totales** | Número de noticias incorrectas |
+| **Precisión_global** | Porcentaje de acierto (0-100%) (Los que no tienen nada no han hecho Pimpoyo) |
+| **Puntuación_final** | Puntuación total de todas las noticias que hicieron en Pimpoyo (no es la evaluación final del post-test) |
 
-## 3. interactions
+## 3. Interacciones
 *Detalle de cada noticia analizada.*
 
 | Columna | Contenido |
 | :--- | :--- |
-| **id** | Identificador único de la interacción. |
-| **noticia_id** | Referencia numérica a la noticia. |
-| **respuesta_usuario** | Qué contestó ("Verdadero", "Falso", "No sé"). |
-| **es_correcto** | Si acertó o falló. |
-| **tiempo_respuesta_ms** | Tiempo que tardó en decidir. |
-| **tipo_error** | Tipo de fallo ("FALSO_POSITIVO", "FALSO_NEGATIVO"). |
+| **ID** | Identificador único de la interacción. |
+| **Noticia_ID** | Referencia numérica de la noticia. |
+| **Respuesta_usuario** | Qué contestó ("Verdadero" o "Falso") (está en inglés por el lenguaje de programación). |
+| **Puntos_otorgados** | Puntuaciones otorgadas por poner la respuesta bien o mal (pone dos en la que está mal porque a pesar de que esté mal siguen ganando experiencia). |
+| **Respuesta_correcta** | Si acertó o falló. |
+| **Tipo_error** | Tipo de fallo ("FALSO_POSITIVO" o "FALSO_NEGATIVO"). |
 | **indicadores_seleccionados**| Lista de pistas (JSON) que marcó el usuario. |
-| **key_elements** | Elementos clave (JSON) de la noticia original. |
+| **Actividad_evaluada** | Qué actividad de Pimpoyo realizó |
+| **Elementos_ clave** | Elementos clave (formato JSON) de la noticia original. |
+| **Pistas_Pimpoyo** | Pistas originales de las noticias que tiene Pimpoyo para evaluar al usuario. |
+| **Posibles_malentendidos** | Pistas que tiene Pimpoyo para saber en qué puede fallar el usuario.|
+| **Indicadores_detectados_noticia** | Indicadores finales para evaluar al usuario en base a la teoría del TFM.|
+| **Indicadores_seleccionados_usuario** | Indicadores seleccionados por el usuario (los que no tienen nada no han hecho Pimpoyo)|
 
-## 4. news
-*Catálogo único de noticias.*
+## 4. Noticias
+*Catálogo de noticias que salieron en las sesiones de Pimpoyo.*
 
 | Columna | Contenido |
 | :--- | :--- |
-| **id** | Identificador interno. |
-| **external_id** | Código original del dataset. Ej: "fake_001". |
-| **tema** | Categoría (Salud, Política, etc.). |
-| **dificultad** | Nivel ("Bajo", "Medio", "Alto"). |
-| **fuente** | Nombre del medio o fuente. |
-| **metadata** | Datos extra (JSON) como el titular o el enlace. |
+| **ID** | Identificador interno. |
+| **External_ID** | Código original del dataset. |
+| **Tema** | Categoría (Salud, Política, etc.). |
+| **Dificultad** | Nivel ("Bajo", "Medio", "Alto"). |
+| **Fuente** | Nombre del medio o fuente. |
 
-## 5. chat_sessions_news
+## 5. Chat_sessions_news
 *Conversación guiada sobre una noticia.*
 
 | Columna | Contenido |
 | :--- | :--- |
-| **id** | ID de la sesión de chat. |
-| **evaluacion_inicial_usuario** | Qué pensaba antes de hablar con el bot. |
-| **explicacion_inicial_usuario** | Por qué pensaba eso (texto). |
-| **mejora_comprension_evaluacion**| Si el chat le ayudó ("SI"/"NO"). |
-| **noticia_verdad_real** | La verdad objetiva de la noticia ("TRUE"/"FALSE"). |
+| **ID** | ID de la sesión de chat. |
+| **Evaluacion_inicial_usuario** | Qué pensaba antes de hablar con el bot. |
+| **Explicación_inicial_usuario** | Por qué pensaba eso (texto). |
+| **Mejora_comprension_evaluacion**| Si el chat le ayudó ("SI"/"NO"/"INCIERTO"). |
+| **Comprensión_justificación_chatbot**| Explicación que analiza la respuesta del usuario para dar el feedback correcto. |
+| **Evaluación_real_noticia** | La verdad objetiva de la noticia ("TRUE"/"FALSE"). |
+| **Respuesta_correcta** | Evalua si el alumno se ha equivaco o no ("VERDADERO=SI"/"FALSO=NO"). |
 
-## 6. chat_messages
+## 6. Chat_messages
 *Mensajes individuales del chat.*
 
 | Columna | Contenido |
 | :--- | :--- |
-| **chat_session_id** | ID de la sesión de chat a la que pertenece. |
-| **emisor** | Quién envío el mensaje ("usuario", "chatbot"). |
-| **contenido** | Texto del mensaje. |
-| **orden** | Posición en la conversación. |
+| **Chat_session_id** | ID de la sesión de chat a la que pertenece. |
+| **Emisor** | Quién envío el mensaje ("usuario", "chatbot"). |
 
 ## 7. stats_user_details
 *Estadísticas desglosadas por tema/criterio.*
 
 | Columna | Contenido |
 | :--- | :--- |
-| **tipo_criterio** | Qué se mide (ej. "TEMA_NOTICIA", "DIFICULTAD"). |
-| **valor_criterio** | El valor específico (ej. "Política", "Dificil"). |
-| **tasa_acierto** | % de acierto específico en este criterio. |
+| **Tipo_criterio** | Qué se mide (ej. "TEMA_NOTICIA", "DIFICULTAD"). |
+| **Valor_criterio** | El valor específico del criterio (ej. "Política", "Dificil"). |
+| **Número_intentos** | Número de veces que se ha encontrado ese criterio y ha fallado (ej. "Política", "Dificil"). |
+| **Número_aciertos** | Número de veces que se ha encontrado ese criterio y ha acertado (ej. "Política", "Dificil"). |
+| **Tasa_acierto** | % de acierto específico en este criterio.(1 = 100%) |
 
-## 8. glossary_terms
-*Glosario personal del estudiante.*
-
-| Columna | Contenido |
-| :--- | :--- |
-| **term** | Palabra guardada. |
-| **definition** | Definición de la palabra. |
-
-## 9. indicators
+## 8. indicators
 *Catálogo de indicadores de desinformación.*
 
 | Columna | Contenido |
 | :--- | :--- |
 | **name** | Nombre del indicador (ej. "Fuente Anónima"). |
 
-## 10. pretest_results / posttest_results
+## 9. pretest_results / posttest_results
 *Respuestas a los cuestionarios.*
 
 | Columna | Contenido |
