@@ -17,7 +17,7 @@ Contenido de las tablas del nuevo esquema "pimpoyo".
 | **Xp_actual** | Puntos de experiencia acumulados (Nivel) (Los que tienen 0 no han hecho Pimpoyo) |
 | **Created_at** | Fecha de registro. |
 
-## 2. Sessions
+## 2. Sesiones
 *Resultados de la sesión con Pimpoyo.*
 
 | Columna | Contenido |
@@ -73,7 +73,7 @@ Contenido de las tablas del nuevo esquema "pimpoyo".
 | **Evaluación_real_noticia** | La verdad objetiva de la noticia ("TRUE"/"FALSE"). |
 | **Respuesta_correcta** | Evalua si el alumno se ha equivaco o no ("VERDADERO=SI"/"FALSO=NO"). |
 
-## 6. Chat_messages
+## 6. Chat_mensajes
 *Mensajes individuales del chat.*
 
 | Columna | Contenido |
@@ -81,7 +81,7 @@ Contenido de las tablas del nuevo esquema "pimpoyo".
 | **Chat_session_id** | ID de la sesión de chat a la que pertenece. |
 | **Emisor** | Quién envío el mensaje ("usuario", "chatbot"). |
 
-## 7. stats_user_details
+## 7. Estadísticas_user_detalles
 *Estadísticas desglosadas por tema/criterio.*
 
 | Columna | Contenido |
@@ -92,14 +92,14 @@ Contenido de las tablas del nuevo esquema "pimpoyo".
 | **Número_aciertos** | Número de veces que se ha encontrado ese criterio y ha acertado (ej. "Política", "Dificil"). |
 | **Tasa_acierto** | % de acierto específico en este criterio.(1 = 100%) |
 
-## 8. indicators
+## 8. Indicadores
 *Catálogo de indicadores de desinformación.*
 
 | Columna | Contenido |
 | :--- | :--- |
 | **name** | Nombre del indicador (ej. "Fuente Anónima"). |
 
-## 9. pretest_results / posttest_results
+## 9. Pretest_resultados / Posttest_resultados
 *Respuestas a los cuestionarios.*
 
 | Columna | Contenido |
